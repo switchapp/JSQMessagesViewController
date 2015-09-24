@@ -30,6 +30,11 @@
 - (UIImage *)jsq_imageMaskedWithColor:(UIColor *)maskColor;
 
 /**
+ *  @return The default message bubble image.
+ */
++ (UIImage *)jsq_bubbleDefault;
+
+/**
  *  @return The regular message bubble image.
  */
 + (UIImage *)jsq_bubbleRegularImage;

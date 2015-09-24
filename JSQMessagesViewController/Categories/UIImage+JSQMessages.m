@@ -55,6 +55,10 @@
     return [UIImage imageWithContentsOfFile:path];
 }
 
++ (UIImage *)jsq_bubbleDefault {
+    return [UIImage jsq_bubbleImageFromBundleWithName:@"ste_bubble"];
+}
+
 + (UIImage *)jsq_bubbleRegularImage
 {
     return [UIImage jsq_bubbleImageFromBundleWithName:@"bubble_regular"];
