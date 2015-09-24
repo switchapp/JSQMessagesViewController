@@ -50,6 +50,7 @@
  *  @return An initialized `JSQMessagesAvatarImage` object if created successfully, `nil` otherwise.
  */
 + (JSQMessagesAvatarImage *)avatarImageWithImage:(UIImage *)image diameter:(NSUInteger)diameter;
++ (JSQMessagesAvatarImage *)avatarRoundedRectImageWithImage:(UIImage *)image diameter:(NSUInteger)diameter;
 
 /**
  *  Returns a copy of the specified image that is cropped to a circle with the given diameter.
@@ -60,6 +61,7 @@
  *  @return A new image object if successful, `nil` otherwise.
  */
 + (UIImage *)circularAvatarImage:(UIImage *)image withDiameter:(NSUInteger)diameter;
++ (UIImage *)roundedRectAvatarImage:(UIImage *)image withDiameter:(NSUInteger)diameter;
 
 /**
  *  Returns a copy of the specified image that is cropped to a circle with the given diameter.
@@ -71,6 +73,7 @@
  *  @return A new image object if successful, `nil` otherwise.
  */
 + (UIImage *)circularAvatarHighlightedImage:(UIImage *)image withDiameter:(NSUInteger)diameter;
++ (UIImage *)roundedRectAvatarHighlightedImage:(UIImage *)image withDiameter:(NSUInteger)diameter;
 
 /**
  *  Creates and returns a `JSQMessagesAvatarImage` object with a circular shape that displays the specified userInitials

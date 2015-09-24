@@ -74,6 +74,30 @@
                                            highlightedColor:[UIColor colorWithWhite:0.1f alpha:0.3f]];
 }
 
++ (JSQMessagesAvatarImage *)avatarRoundedRectImageWithImage:(UIImage *)image diameter:(NSUInteger)diameter
+{
+    UIImage *avatar = [JSQMessagesAvatarImageFactory roundedRectAvatarImage:image withDiameter:diameter];
+    UIImage *highlightedAvatar = [JSQMessagesAvatarImageFactory roundedRectAvatarHighlightedImage:image withDiameter:diameter];
+    
+    return [[JSQMessagesAvatarImage alloc] initWithAvatarImage:avatar
+                                              highlightedImage:highlightedAvatar
+                                              placeholderImage:avatar];
+}
+
++ (UIImage *)roundedRectAvatarImage:(UIImage *)image withDiameter:(NSUInteger)diameter
+{
+    return [JSQMessagesAvatarImageFactory jsq_roundedRectImage:image
+                                               withDiameter:diameter
+                                           highlightedColor:nil];
+}
+
++ (UIImage *)roundedRectAvatarHighlightedImage:(UIImage *)image withDiameter:(NSUInteger)diameter
+{
+    return [JSQMessagesAvatarImageFactory jsq_roundedRectImage:image
+                                               withDiameter:diameter
+                                           highlightedColor:[UIColor colorWithWhite:0.1f alpha:0.3f]];
+}
+
 + (JSQMessagesAvatarImage *)avatarImageWithUserInitials:(NSString *)userInitials
                                         backgroundColor:(UIColor *)backgroundColor
                                               textColor:(UIColor *)textColor
@@ -172,4 +196,32 @@
     return newImage;
 }
 
++ (UIImage *)jsq_roundedRectImage:(UIImage *)image withDiameter:(NSUInteger)diameter highlightedColor:(UIColor *)highlightedColor
+{
+    NSParameterAssert(image != nil);
+    NSParameterAssert(diameter > 0);
+    
+    CGRect frame = CGRectMake(0.0f, 0.0f, diameter, diameter);
+    UIImage *newImage = nil;
+    
+    UIGraphicsBeginImageContextWithOptions(frame.size, NO, [UIScreen mainScreen].scale);
+    {
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        
+        UIBezierPath *imgPath =   [UIBezierPath bezierPathWithRoundedRect:frame cornerRadius:diameter];
+        [imgPath addClip];
+        [image drawInRect:frame];
+        
+        if (highlightedColor != nil) {
+            CGContextSetFillColorWithColor(context, highlightedColor.CGColor);
+            CGContextFillEllipseInRect(context, frame);
+        }
+        
+        newImage = UIGraphicsGetImageFromCurrentImageContext();
+        
+    }
+    UIGraphicsEndImageContext();
+    
+    return newImage;
+}
 @end
