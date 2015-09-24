@@ -208,7 +208,7 @@
     {
         CGContextRef context = UIGraphicsGetCurrentContext();
         
-        UIBezierPath *imgPath =   [UIBezierPath bezierPathWithRoundedRect:frame cornerRadius:diameter];
+        UIBezierPath *imgPath =   [UIBezierPath bezierPathWithRoundedRect:frame cornerRadius:5.0f];
         [imgPath addClip];
         [image drawInRect:frame];
         
